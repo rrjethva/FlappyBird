@@ -41,7 +41,7 @@ cvs.addEventListener("click", function (event) {
         case state.game:
             if (bird.y - bird.radius <= 0) return;
             bird.flap();
-            FLAP.play();
+            // FLAP.play();
             break;
         case state.over:
             let rect = cvs.getBoundingClientRect();
@@ -125,6 +125,7 @@ const bird = {
     flap: function () {
         this.speed = -this.jump;
     },
+
     update: function () {
         this.period = state.current == state.getReady ? 10 : 5;
         this.frame += frames % this.period == 0 ? 1 : 0;
@@ -163,7 +164,7 @@ const getReady = {
 
     draw: function () {
         if (state.current == state.getReady) {
-            ctx.drawImage(sprite, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
+            ctx.drawImage(sprite, 0, 0, this.sX, this.sY, this.w, this.h, this.x, this.y, this.w, this.h);
         }
     }
 };
@@ -206,7 +207,7 @@ const pipes = {
             let bottomYPos = p.y + this.h + this.gap;
 
             //top pipe
-            ctx.drawImage(sprite, this.top.sX, this.top, sY, this.w, this.h, p.x, topYPos, this.w, this.h);
+            ctx.drawImage(sprite, this.top.sX, this.top, this.top.sY, this.w, this.h, p.x, topYPos, this.w, this.h);
 
             //bottom pip
             ctx.drawImage(sprite, this.bottom.sX, this.bottom.sY, this.w, this.h, p.x, bottomYPos, this.w, this.h);
@@ -218,7 +219,7 @@ const pipes = {
         if (frames % 100 == 0) {
             this.position.push({
                 x: cvs.width,
-                y: this.maxYPos * (Math.randome() + 1)
+                y: this.maxYPos * (Math.random() + 1)
             });
         }
         for (let i = 0; i < this.position.length; i++) {
