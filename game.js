@@ -260,7 +260,7 @@ const score = {
             ctx.lineWidth = 2;
             ctx.font = "35px Teko";
             ctx.fillText(this.value, cvs.width / 2, 50);
-            ctx.strokeText(thiss.value, cvs.width / 2, 50);
+            ctx.strokeText(this.value, cvs.width / 2, 50);
         } else if (state.current == state.over) {
             //score value
             ctx.font = "25px Teko";
